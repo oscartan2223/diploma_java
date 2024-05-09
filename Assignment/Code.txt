@@ -1,0 +1,194 @@
+public String CheckAvailableroom(String calval, String checkins){
+    try{
+        int checkvalue = 0;
+        File Login = new File("booking.txt");
+        Scanner inputfile = new Scanner(Login);
+        while(inputfile.hasNextLine()){
+            String[] list = inputfile.nextLine().split(", ");
+            String fileroomid = list[0];
+            String filenumday = list[5];
+            String filecheckin = list[6];
+            if (fileroomid.equals(calval)) {
+                //check past record varaible name
+                String[] a = filecheckin.split("/");
+                String sd = a[0];
+                String sm = a[1];
+                String sy = a[2];
+                int tsd = Integer.parseInt(sd);
+                int tsm = Integer.parseInt(sm);
+                int tsy = Integer.parseInt(sy);
+                
+                int numberday = Integer.parseInt(filenumday);
+                
+                int caldate = tsd;
+                int calmonth = tsm;
+                int calyear = tsy;
+                String calall;
+                
+                //check current record variable name
+                String[] b = checkin.split("/");
+                String sds = b[0];
+                String sms = b[1];
+                String sys = b[2];
+                int tsds = Integer.parseInt(sds);
+                int tsms = Integer.parseInt(sms);
+                int tsys = Integer.parseInt(sys);
+
+                int caldates = tsds;
+                int calmonths = tsms;
+                int calyears = tsys;
+                String calalls;
+                
+                // 2019/1/4 35day verify
+                for (int eachday = 1; eachday<= numberday; eachday++){//4,5,6,7,8,9,10,11,12...35
+                    if (calyear % 4 == 0){
+                        if (calmonth == 1 || calmonth == 3 || calmonth == 5 || calmonth ==7 || calmonth ==8 || calmonth ==10){
+                            if (caldate <31){
+                                caldate += 1;
+                            }else{
+                                calmonth += 1;
+                                caldate = 1;
+                            }
+                        }else if(calmonth == 4 || calmonth == 6 || calmonth == 9 || calmonth == 11){
+                            if (caldate < 30){
+                                caldate += 1;
+                            }else{
+                                calmonth += 1;
+                                caldate = 1;
+                            }
+                        }else if (calmonth == 12){
+                            if (caldate <31){
+                                caldate += 1;
+                            }else{
+                                calmonth = 1;
+                                caldate = 1;
+                                calyear += 1;
+                            }
+                        }else{
+                            if (caldate < 29){
+                                caldate += 1;
+                            }else{
+                                calmonth += 1;
+                                caldate = 1;
+                            }
+                        }  
+                    }else{
+                        if (calmonth == 1 || calmonth == 3 || calmonth == 5 || calmonth ==7 || calmonth ==8 || calmonth ==10){
+                            if (caldate <31){
+                                caldate += 1;
+                            }else{
+                                calmonth += 1;
+                                caldate = 1;
+                            }
+                        }else if(calmonth == 4 || calmonth == 6 || calmonth == 9 || calmonth == 11){
+                            if (caldate < 30){
+                                caldate += 1;
+                            }else{
+                                calmonth += 1;
+                                caldate = 1;
+                            }
+                        }else if (calmonth == 12){
+                            if (caldate <31){
+                                caldate += 1;
+                            }else{
+                                calmonth = 1;
+                                caldate = 1;
+                                calyear += 1;
+                            }
+                        }else{
+                            if (caldate < 28){
+                                caldate += 1;
+                            }else{
+                                calmonth += 1;
+                                caldate = 1;
+                            }
+                        }
+                    }
+                    calall = caldate + "/" + calmonth + "/" + calyear;
+                    for (int eachdays = 1; eachdays<= Numdate; eachdays++){//4,5,6,7,8,9,10,11,12...35
+                    if (calyears % 4 == 0){
+                        if (calmonths == 1 || calmonths == 3 || calmonths == 5 || calmonths ==7 || calmonths ==8 || calmonths ==10){
+                            if (caldates <31){
+                                caldates += 1;
+                            }else{
+                                calmonths += 1;
+                                caldates = 1;
+                            }
+                        }else if(calmonths == 4 || calmonths == 6 || calmonths == 9 || calmonths == 11){
+                            if (caldates < 30){
+                                caldates += 1;
+                            }else{
+                                calmonths += 1;
+                                caldates = 1;
+                            }
+                        }else if (calmonths == 12){
+                            if (caldates <31){
+                                caldates += 1;
+                            }else{
+                                calmonths = 1;
+                                caldates = 1;
+                                calyears += 1;
+                            }
+                        }else{
+                            if (caldates < 29){
+                                caldates += 1;
+                            }else{
+                                calmonths += 1;
+                                caldates = 1;
+                            }
+                        }  
+                    }else{
+                        if (calmonths == 1 || calmonths == 3 || calmonths == 5 || calmonths ==7 || calmonths ==8 || calmonths ==10){
+                            if (caldates <31){
+                                caldates += 1;
+                            }else{
+                                calmonths += 1;
+                                caldates = 1;
+                            }
+                        }else if(calmonths == 4 || calmonths == 6 || calmonths == 9 || calmonths == 11){
+                            if (caldates < 30){
+                                caldates += 1;
+                            }else{
+                                calmonths += 1;
+                                caldates = 1;
+                            }
+                        }else if (calmonths == 12){
+                            if (caldates <31){
+                                caldates += 1;
+                            }else{
+                                calmonths = 1;
+                                caldates = 1;
+                                calyears += 1;
+                            }
+                        }else{
+                            if (caldates < 28){
+                                caldates += 1;
+                            }else{
+                                calmonths += 1;
+                                caldates = 1;
+                            }
+                        }
+                    }
+                    calalls = caldates + "/" + calmonths + "/" + calyears;
+                    if (calall == calalls){
+                        checkvalue += 1;
+                    }
+                    }
+                }
+                
+                }
+            }if (checkvalue == 0){
+                return "Sucess";
+            }else{
+                return"";
+            }
+    
+        
+
+        
+    }catch(FileNotFoundException ex){
+        return "";
+    }
+
+}
+}
